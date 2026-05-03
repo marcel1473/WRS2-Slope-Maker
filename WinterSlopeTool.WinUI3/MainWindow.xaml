@@ -1,0 +1,172 @@
+<Window
+    x:Class="WinterSlopeTool.WinUI3.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="Winter Resort Simulator 2 - Slope Adder">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="0,0,0,1">
+            <Grid Padding="24,18" ColumnSpacing="14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Width="44"
+                        Height="44"
+                        CornerRadius="8"
+                        Background="{ThemeResource AccentFillColorDefaultBrush}">
+                    <FontIcon Glyph="&#xE809;"
+                              FontSize="20"
+                              Foreground="White" />
+                </Border>
+
+                <StackPanel Grid.Column="1" Spacing="2" VerticalAlignment="Center">
+                    <TextBlock Text="Slope Adder"
+                               FontSize="24"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="Winter Resort Simulator 2"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1">
+            <Grid MaxWidth="860" Padding="24" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid ColumnSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox x:Name="SaveFileBox"
+                             Header="Save .lua file"
+                             PlaceholderText="Choose your savegame file" />
+                    <Button Grid.Column="1"
+                            VerticalAlignment="Bottom"
+                            Click="BrowseButton_Click">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <SymbolIcon Symbol="OpenFile" />
+                            <TextBlock Text="Browse" />
+                        </StackPanel>
+                    </Button>
+                </Grid>
+
+                <Grid Grid.Row="1" Margin="0,22,0,0" ColumnSpacing="18">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.1*" />
+                        <ColumnDefinition Width="0.9*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Spacing="14">
+                        <TextBlock Text="Run Details"
+                                   FontSize="16"
+                                   FontWeight="SemiBold" />
+
+                        <TextBox x:Name="NameBox"
+                                 Header="Run name"
+                                 Text="Valley Run" />
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="FromBox"
+                                     Header="From"
+                                     Text="Mountain" />
+                            <TextBox x:Name="ToBox"
+                                     Grid.Column="1"
+                                     Header="To"
+                                     Text="Valley" />
+                        </Grid>
+
+                        <ComboBox x:Name="DifficultyBox"
+                                  Header="Difficulty"
+                                  SelectedIndex="0"
+                                  HorizontalAlignment="Stretch">
+                            <ComboBoxItem Content="1 - Blue / Easy" />
+                            <ComboBoxItem Content="2 - Red / Medium" />
+                            <ComboBoxItem Content="3 - Black / Hard" />
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Spacing="14">
+                        <TextBlock Text="Game Values"
+                                   FontSize="16"
+                                   FontWeight="SemiBold" />
+
+                        <Grid ColumnSpacing="12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="SlopeBox"
+                                     Header="Slope id"
+                                     Text="1" />
+                            <NumberBox x:Name="InfoLayerBox"
+                                       Grid.Column="1"
+                                       Header="Info Layer"
+                                       Minimum="0"
+                                       Maximum="999999"
+                                       SpinButtonPlacementMode="Inline" />
+                        </Grid>
+
+                        <NumberBox x:Name="LengthBox"
+                                   Header="Length seconds"
+                                   Value="180"
+                                   Minimum="1"
+                                   Maximum="999999"
+                                   SpinButtonPlacementMode="Inline" />
+                        <NumberBox x:Name="CapacityBox"
+                                   Header="Max skier capacity"
+                                   Value="6000"
+                                   Minimum="0"
+                                   Maximum="999999"
+                                   SpinButtonPlacementMode="Inline" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
+
+        <Border Grid.Row="2"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="0,1,0,0">
+            <Grid Padding="24,14" ColumnSpacing="14">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <InfoBar x:Name="StatusBar"
+                         IsOpen="True"
+                         Severity="Informational"
+                         Message="Ready." />
+                <Button Grid.Column="1"
+                        Click="AddButton_Click"
+                        Style="{StaticResource AccentButtonStyle}">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <SymbolIcon Symbol="Add" />
+                        <TextBlock Text="Add Slope" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
